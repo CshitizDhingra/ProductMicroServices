@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["ProductMicroServices/ProductMicroServices.csproj", "ProductMicroServices/"]
-RUN dotnet restore "ProductMicroServices/ProductMicroServices.csproj"
+COPY ["ProductMicroServices.csproj", ""]
+RUN dotnet restore "ProductMicroServices.csproj"
 COPY . .
-WORKDIR "/src/ProductMicroServices"
+WORKDIR "/src/."
 RUN dotnet build "ProductMicroServices.csproj" -c Release -o /app/build
 
 FROM build AS publish
